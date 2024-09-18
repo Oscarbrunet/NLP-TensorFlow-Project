@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 from collections import Counter
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+import numpy as np
 
 # Téléchargement des stopwords si ce n'est pas encore fait
 nltk.download('stopwords')
@@ -79,4 +80,9 @@ train_sequences = tokenizer.texts_to_sequences(train_sentences)
 max_length = 20
 
 train_padded = pad_sequences(train_sequences, maxlen=max_length, padding="post", truncating="post")
-print(train_padded.shape)
+np.save('train_padded.npy', train_padded)
+np.save('train_labels.npy', train_labels)
+
+with open('model_params.txt', 'w') as f:
+    f.write(f'max_length: {max_length}\n')
+    f.write(f'num_unique_words: {num_unique_words}\n')
