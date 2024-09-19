@@ -1,9 +1,13 @@
 import tensorflow as tf
 import numpy as np
+from tensorflow.keras import layers, models
+from tensorflow import keras
 
 # Charger les données prétraitées
 train_padded = np.load('train_padded.npy')
 train_labels = np.load('train_labels.npy')
+test_padded = np.load('test_padded.npy')
+test_labels = np.load('test_labels.npy')
 
 # Charger max_length et num_unique_words depuis le fichier texte
 with open('model_params.txt', 'r') as f:
@@ -11,9 +15,7 @@ with open('model_params.txt', 'r') as f:
     max_length = int(params[0].split(': ')[1])
     num_unique_words = int(params[1].split(': ')[1])
     
-import tensorflow as tf
-from tensorflow.keras import layers, models
-from tensorflow import keras
+
 
 # Créer un modèle séquentiel
 model = keras.models.Sequential()
@@ -39,7 +41,7 @@ metrics = ["accuracy"]
 model.compile(loss=loss, optimizer=optim, metrics=metrics)
 
 # Entraîner le modèle sur les données padded
-model.fit(train_padded, train_labels, epochs=20, validation_data=(val_padded, val_labels), verbose=2)
+model.fit(train_padded, train_labels, epochs=20, validation_data=(test_padded, test_labels), verbose=2)
 
 # Faire des prédictions
 predictions = model.predict(train_padded)
