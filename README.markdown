@@ -1,20 +1,3 @@
-# TensorFlow Project
-
-The objective of the project was to implement a neuronal network (LSTM, Embedding, Dropout, ...) with Tensorflow in order to make a sentiment analysis. 
-
-## Table of Contents
-1. [Description]
-2. [Installation]
-3. [Usage]
-
-
-
-## I## Description
-
-_In order to reach the objective, I downloaded a database from Kaggle. You can see the data thanks to `Visualization_Data.py`._
-
-The objective of the project was to implement a neuronal network (LSTM, Embedding, Dropout, ...) with Tensorflow in order to make a sentiment analysis.
-
 ## Table of Contents
 1. [Description]
 2. [Installation]
